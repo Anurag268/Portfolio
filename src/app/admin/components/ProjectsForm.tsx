@@ -1,14 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { updatePortfolioSection } from "@/app/actions/portfolio";
-import { Loader2, Plus, Trash2, Save, ChevronDown, ChevronUp } from "lucide-react";
+import { uploadProjectImage } from "@/app/actions/images";
+import { Loader2, Plus, Trash2, Save, ChevronDown, ChevronUp, Image as ImageIcon, Upload } from "lucide-react";
 
 export default function ProjectsForm({ data }: { data: any }) {
   const [projects, setProjects] = useState<any[]>(data || []);
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+  const [uploadingIndex, setUploadingIndex] = useState<number | null>(null);
+
+  const fileInputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const addProject = () => {
     setProjects([{
@@ -18,7 +22,8 @@ export default function ProjectsForm({ data }: { data: any }) {
       role: "",
       techStack: [],
       challenges: [],
-      links: { live: "", repo: "", demo: "" }
+      links: { live: "", repo: "", demo: "" },
+      imageId: ""
     }, ...projects]);
     setExpandedIndex(0);
   };
@@ -31,7 +36,6 @@ export default function ProjectsForm({ data }: { data: any }) {
 
   const updateProject = (index: number, field: string, value: any) => {
     const newProjects = [...projects];
-    // Handle nested links object
     if (field.startsWith('links.')) {
       const linkField = field.split('.')[1];
       if (!newProjects[index].links) newProjects[index].links = {};
@@ -42,7 +46,6 @@ export default function ProjectsForm({ data }: { data: any }) {
     setProjects(newProjects);
   };
 
-  // Array handlers
   const updateArrayItem = (projIndex: number, field: 'techStack' | 'challenges', itemIndex: number, value: string) => {
     const newProjects = [...projects];
     newProjects[projIndex][field][itemIndex] = value;
@@ -62,12 +65,39 @@ export default function ProjectsForm({ data }: { data: any }) {
     setProjects(newProjects);
   };
 
+  const handleImageUpload = async (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || !e.target.files[0]) return;
+    
+    const file = e.target.files[0];
+    if (!file.type.startsWith("image/")) {
+      alert("Please select an image file.");
+      return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+      alert("File is too large. Maximum size is 2MB.");
+      return;
+    }
+
+    setUploadingIndex(index);
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const result = await uploadProjectImage(formData);
+    
+    if (result.error) {
+      alert(result.error);
+    } else if (result.imageId) {
+      updateProject(index, 'imageId', result.imageId);
+    }
+    
+    setUploadingIndex(null);
+  };
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
     setMessage("");
     
-    // Clean empty items
     const cleanedProjects = projects.map(p => ({
       ...p,
       techStack: p.techStack?.filter((i: string) => i.trim() !== "") || [],
@@ -96,7 +126,6 @@ export default function ProjectsForm({ data }: { data: any }) {
       <div className="space-y-4">
         {projects.map((project, index) => (
           <div key={index} className="bg-zinc-900/30 border border-zinc-800 rounded-2xl overflow-hidden transition-all">
-            {/* Header / Accordion Toggle */}
             <div 
               className="flex items-center justify-between p-4 cursor-pointer hover:bg-zinc-800/30 transition-colors"
               onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
@@ -104,6 +133,7 @@ export default function ProjectsForm({ data }: { data: any }) {
               <div className="flex items-center space-x-3">
                 <span className="text-zinc-500 font-mono text-xs">{index + 1}</span>
                 <h3 className="text-lg font-semibold text-white">{project.title || "Untitled Project"}</h3>
+                {project.imageId && <ImageIcon size={14} className="text-primary ml-2" />}
               </div>
               <div className="flex items-center space-x-2">
                 <button type="button" onClick={(e) => { e.stopPropagation(); removeProject(index); }} className="text-red-400 hover:text-red-300 p-2">
@@ -113,9 +143,43 @@ export default function ProjectsForm({ data }: { data: any }) {
               </div>
             </div>
 
-            {/* Expanded Form Content */}
             {expandedIndex === index && (
               <div className="p-6 border-t border-zinc-800 space-y-6 bg-zinc-950/50">
+                
+                {/* Image Upload Section */}
+                <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
+                  <label className="text-sm font-medium text-zinc-300 mb-2 block">Project Image Preview</label>
+                  <div className="flex items-center gap-4">
+                    <div className="w-32 h-20 bg-zinc-800 rounded-lg overflow-hidden border border-zinc-700 flex-shrink-0 relative">
+                      {project.imageId ? (
+                        <img src={`/api/images/${project.imageId}`} alt="Preview" className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-zinc-600 text-xs">No Image</div>
+                      )}
+                    </div>
+                    <div>
+                      <input 
+                        type="file" 
+                        accept="image/*"
+                        className="hidden" 
+                        id={`upload-${index}`}
+                        ref={(el) => { fileInputRefs.current[index] = el; }}
+                        onChange={(e) => handleImageUpload(index, e)}
+                      />
+                      <button 
+                        type="button"
+                        onClick={() => fileInputRefs.current[index]?.click()}
+                        disabled={uploadingIndex === index}
+                        className="bg-zinc-800 hover:bg-zinc-700 text-white px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+                      >
+                        {uploadingIndex === index ? <Loader2 size={14} className="animate-spin" /> : <Upload size={14} />}
+                        {project.imageId ? "Replace Image" : "Upload Image"}
+                      </button>
+                      <p className="text-xs text-zinc-500 mt-2">Max 2MB. Saved automatically on upload.</p>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-zinc-300">Project Title</label>
@@ -137,7 +201,6 @@ export default function ProjectsForm({ data }: { data: any }) {
                   <textarea value={project.problemSolved} onChange={(e) => updateProject(index, "problemSolved", e.target.value)} rows={3} required className="w-full bg-zinc-900/80 border border-zinc-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-primary resize-none" />
                 </div>
 
-                {/* Tech Stack Array */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-zinc-300">Tech Stack</label>
                   <div className="flex flex-wrap gap-2">
@@ -153,7 +216,6 @@ export default function ProjectsForm({ data }: { data: any }) {
                   </div>
                 </div>
 
-                {/* Challenges Array */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-zinc-300">Key Challenges Overcome</label>
                   {project.challenges?.map((chal: string, cIndex: number) => (
@@ -167,7 +229,6 @@ export default function ProjectsForm({ data }: { data: any }) {
                   </button>
                 </div>
 
-                {/* Links */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 border-t border-zinc-800">
                   <div>
                     <label className="text-xs text-zinc-400 block mb-1">Live URL</label>

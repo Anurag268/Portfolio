@@ -1,0 +1,25 @@
+# Implementation Tasks
+
+- `[x]` Phase 1: Authentication & User Management
+  - `[x]` Initialize Node.js project and install dependencies.
+  - `[x]` Create project folder structure.
+  - `[x]` Setup MongoDB connection and environment variables.
+  - `[x]` Create `User` model.
+  - `[x]` Create JWT authentication middleware.
+  - `[x]` Implement auth controllers (Register, Login, Get Profile).
+  - `[x]` Setup Express app and server entry points.
+- `[x]` Phase 2: Market APIs & Watchlist APIs
+  - `[x]` Create mock Market Data service.
+  - `[x]` Implement Market APIs (`/api/stocks`, `/api/stocks/search`, `/api/stocks/:symbol`).
+  - `[x]` Create `Watchlist` model.
+  - `[x]` Implement Watchlist APIs (Add, Get, Delete).
+  - `[x]` Integrate routes into Express app.
+- `[x]` Phase 3: Virtual Trading Engine & Portfolio Management
+  - `[x]` Create `Portfolio` and `Trade` schemas.
+  - `[x]` Implement Virtual Trading API (`/api/trade/buy`, `/api/trade/sell`).
+  - `[x]` Implement Portfolio API (`/api/portfolio`, `/api/portfolio/summary`).
+  - `[x]` Integrate Trade and Portfolio routes into Express app.
+- `[ ]` Phase 4: Dashboard & Trade History
+- `[ ]` Phase 5: Learning Module & Quiz System
+- `[ ]` Phase 6: Leaderboard & Notifications
+- `[ ]` Phase 7: Socket.IO Integration & Testing

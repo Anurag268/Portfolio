@@ -26,11 +26,16 @@ const ProjectLinkSchema = new mongoose.Schema({
 const ProjectSchema = new mongoose.Schema({
   title: { type: String, required: true },
   shortPitch: { type: String, required: true },
-  problemSolved: { type: String, required: true },
+  problemSolved: { type: String },
+  role: { type: String },
   techStack: [{ type: String }],
-  role: { type: String, required: true },
   challenges: [{ type: String }],
-  links: ProjectLinkSchema,
+  links: {
+    live: { type: String },
+    repo: { type: String },
+    demo: { type: String }
+  },
+  imageId: { type: String }
 });
 
 const ExperienceSchema = new mongoose.Schema({
