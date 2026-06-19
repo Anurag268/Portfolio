@@ -28,6 +28,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+import Tracker from "@/components/Tracker";
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -40,6 +42,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-primary/30`}
       >
+        <Tracker />
         {children}
       </body>
     </html>

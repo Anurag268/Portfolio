@@ -10,6 +10,7 @@ import ExperienceForm from "./components/ExperienceForm";
 import ContactSettingsForm from "./components/ContactSettingsForm";
 import MessagesView from "./components/MessagesView";
 import ResumeForm from "./components/ResumeForm";
+import AnalyticsPanel from "./components/AnalyticsPanel";
 
 export default function EditorForm({ portfolio }: { portfolio: any }) {
   const [activeTab, setActiveTab] = useState("hero");
@@ -23,7 +24,8 @@ export default function EditorForm({ portfolio }: { portfolio: any }) {
     { id: "experience", label: "Experience" },
     { id: "contact", label: "Contact Info" },
     { id: "resume", label: "Resume Upload" },
-    { id: "messages", label: "Inbox" }
+    { id: "messages", label: "Inbox" },
+    { id: "analytics", label: "Analytics" }
   ];
 
   return (
@@ -62,6 +64,7 @@ export default function EditorForm({ portfolio }: { portfolio: any }) {
         { activeTab === "contact" && <ContactSettingsForm data={portfolio.contact} /> }
         { activeTab === "resume" && <ResumeForm /> }
         { activeTab === "messages" && <MessagesView /> }
+        { activeTab === "analytics" && <AnalyticsPanel /> }
       </div>
     </div>
   );
