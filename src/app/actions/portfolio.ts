@@ -5,6 +5,9 @@ import { Portfolio } from "@/models/Portfolio";
 import { Message } from "@/models/Message";
 import { portfolioData as initialStaticData } from "@/data/portfolio";
 import { revalidatePath } from "next/cache";
+import { Resend } from "resend";
+
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function getPortfolio() {
   if (!process.env.MONGODB_URI) {
@@ -56,6 +59,30 @@ export async function submitContactForm(formData: FormData) {
     }
 
     await Message.create({ name, email, reason, message });
+    
+    // Send email notification if API key is configured
+    if (process.env.RESEND_API_KEY && resend) {
+      try {
+        await resend.emails.send({
+          from: 'Portfolio Contact <onboarding@resend.dev>',
+          to: process.env.CONTACT_EMAIL || 'anu@gmail.com', // Change this or use env variable
+          subject: `New Portfolio Message: ${reason}`,
+          html: `
+            <div style="font-family: sans-serif; padding: 20px; max-width: 600px;">
+              <h2 style="color: #333;">New Message from your Portfolio</h2>
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Reason:</strong> ${reason}</p>
+              <hr style="border: none; border-top: 1px solid #eaeaea; margin: 20px 0;" />
+              <p><strong>Message:</strong></p>
+              <p style="background: #f9f9f9; padding: 15px; border-radius: 5px; white-space: pre-wrap;">${message}</p>
+            </div>
+          `
+        });
+      } catch (emailError) {
+        console.error("Failed to send email notification:", emailError);
+      }
+    }
     
     return { success: true };
   } catch (error) {
