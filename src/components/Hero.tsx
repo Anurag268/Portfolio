@@ -69,7 +69,7 @@ export default function Hero({ portfolio }: { portfolio: any }) {
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
             
-            <a href="https://drive.google.com/file/d/1c73ncKqi6Rnq7CkgBGD24Op7Be0mbLJx/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-center space-x-2 bg-transparent border border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 w-full sm:w-auto">
+            <a href="/api/resume" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-center space-x-2 bg-transparent border border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 w-full sm:w-auto">
               <Download size={18} className="group-hover:-translate-y-1 transition-transform" />
               <span>Download Resume</span>
             </a>
