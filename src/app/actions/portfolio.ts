@@ -25,16 +25,21 @@ export async function getPortfolio() {
 }
 
 export async function updatePortfolioSection(section: string, data: any) {
-  await dbConnect();
-  const portfolio = await Portfolio.findOne();
-  if (!portfolio) return { error: "Portfolio not found" };
+  try {
+    await dbConnect();
+    const portfolio = await Portfolio.findOne();
+    if (!portfolio) return { error: "Portfolio not found" };
 
-  portfolio[section] = data;
-  await portfolio.save();
-  
-  revalidatePath("/");
-  revalidatePath("/admin");
-  return { success: true };
+    portfolio[section] = data;
+    await portfolio.save();
+    
+    revalidatePath("/");
+    revalidatePath("/admin");
+    return { success: true };
+  } catch (error: any) {
+    console.error("Error updating portfolio section:", error);
+    return { error: error.message || "Failed to update portfolio section" };
+  }
 }
 
 export async function submitContactForm(formData: FormData) {

@@ -23,7 +23,7 @@ export default function NavbarForm({ data }: { data: any }) {
       setMessage("Navbar settings saved successfully!");
       setTimeout(() => setMessage(""), 3000);
     } else {
-      setMessage("Error saving navbar settings.");
+      setMessage(res.error || "Error saving navbar settings.");
     }
     setIsSaving(false);
   };

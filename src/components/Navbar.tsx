@@ -47,10 +47,10 @@ export default function Navbar({ portfolio }: { portfolio: any }) {
             </div>
           )}
           <span>
-            {portfolio.navbar?.logoText ? (
+            {portfolio?.navbar?.logoText ? (
               <>{portfolio.navbar.logoText}</>
             ) : (
-              <>{portfolio.hero.name.split(" ")[0]}<span className="text-primary">.dev</span></>
+              <>{portfolio?.hero?.name?.split(" ")[0] || "Portfolio"}<span className="text-primary">.dev</span></>
             )}
           </span>
         </Link>
