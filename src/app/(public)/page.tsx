@@ -8,7 +8,7 @@ import { getPortfolio } from "@/app/actions/portfolio";
 
 export default async function Home() {
   const portfolio = await getPortfolio();
-  
+
   return (
     <>
       <Hero portfolio={portfolio} />
@@ -20,3 +20,4 @@ export default async function Home() {
     </>
   );
 }
+// page
