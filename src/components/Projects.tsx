@@ -96,8 +96,8 @@ export default function Projects({ portfolio }: { portfolio: any }) {
                     <div className="lg:col-span-5 flex items-center justify-center">
                       <div className="w-full aspect-square md:aspect-video lg:aspect-auto lg:h-full min-h-[300px] bg-zinc-900 rounded-2xl border border-zinc-800 flex items-center justify-center overflow-hidden group-hover:border-primary/30 transition-colors">
                         <div className="text-center p-6">
-                          <p className="text-zinc-500 mb-2 font-medium">Image Placeholder</p>
-                          <p className="text-xs text-zinc-600">Replace with screenshots of {project.title}</p>
+                          <p className="text-zinc-500 mb-2 font-medium">Project Preview</p>
+                          <p className="text-xs text-zinc-600">Preview for {project.title} coming soon</p>
                         </div>
                       </div>
                     </div>

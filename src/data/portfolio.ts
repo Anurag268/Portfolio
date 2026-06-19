@@ -1,103 +1,129 @@
 export const portfolioData = {
   hero: {
     name: "Anurag Singh",
-    title: "Full-Stack & Mobile App Developer",
+    title: "Frontend Developer | Python Developer | Full Stack Developer",
     taglines: [
-      "I build end-to-end products.",
-      "Job-ready Full-Stack Developer.",
-      "Available for freelance projects."
+      "React.js & Django Developer.",
+      "Building scalable backend services.",
+      "Responsive web applications."
     ],
-    valueProposition: "I specialize in building scalable mobile applications and robust backends, delivering complete end-to-end solutions from concept to deployment."
+    valueProposition: "Computer Science graduate skilled in React.js, Python, Django, Flask, REST APIs, and full-stack web development. Experienced in building responsive web applications, API integrations, and scalable backend services."
   },
   about: {
     title: "About Me",
-    description: "With a strong foundation in Computer Science, I am deeply passionate about solving real-world problems through software. I don't just build the user interface; I architect the entire system, from the mobile app layer to the backend infrastructure that powers it. I leverage modern AI-assisted development workflows to ship high-quality products rapidly and efficiently."
+    description: "I am a Computer Science graduate with a strong foundation in React.js, Python, Django, Flask, REST APIs, and full-stack web development. I have hands-on experience in building responsive web applications, API integrations, and scalable backend services, coupled with strong debugging and problem-solving skills."
   },
   skills: [
     {
       category: "Languages",
-      items: ["Dart", "TypeScript", "JavaScript", "HTML/CSS"]
+      items: ["JavaScript", "Python", "HTML5", "CSS3"]
     },
     {
-      category: "Frameworks",
-      items: ["Flutter", "Next.js", "React", "Node.js"]
+      category: "Frameworks/Libraries",
+      items: ["React.js", "Flask", "Django"]
     },
     {
-      category: "Backend & Infra",
-      items: ["Firebase", "REST APIs", "Serverless", "Database Design"]
+      category: "Frontend",
+      items: ["Responsive UI Design", "UI/UX Principles", "Component-Based Development"]
     },
     {
-      category: "Tools & Practices",
-      items: ["Git", "Cursor/AI-Assisted Dev", "Figma", "Agile Workflow"]
+      category: "Backend & DB",
+      items: ["REST APIs", "API Integration", "JSON", "HTTP Protocols", "MySQL"]
+    },
+    {
+      category: "Tools & Testing",
+      items: ["Git", "GitHub", "Postman", "VS Code", "Manual Testing", "Functional Testing"]
     }
   ],
   projects: [
     {
-      id: "chal-chal-gaadi",
-      title: "Chal Chal Gaadi",
-      shortPitch: "Ola/Uber-style ride-hailing platform",
-      problemSolved: "Provided a streamlined ride-hailing solution with a unique cash/call-based fare model and driver subscription system.",
-      techStack: ["Flutter", "Node.js", "Firebase", "Google Maps API"],
-      role: "Lead Full-Stack Developer (AI-assisted workflow)",
-      challenges: [
-        "Real-time ride status synchronization",
-        "Push notification duplicate-trigger fixes",
-        "Driver subscription billing model implementation"
-      ],
-      links: {
-        live: "https://chalchal.ridealdigitalseva.com", // Replace with actual live link if different
-        repo: "#", // Replace with repo link if public
-        demo: "#" // Replace with demo video link
-      }
-    },
-    {
-      id: "ridego",
-      title: "RideGo",
-      shortPitch: "v1 Ride-hailing concept with live tracking",
-      problemSolved: "Built the foundational prototype for live driver tracking and authentication, which later evolved into Chal Chal Gaadi.",
-      techStack: ["Flutter", "Firebase Auth", "FCM", "Google Maps"],
-      role: "Mobile Developer",
-      challenges: [
-        "Live driver location tracking on map",
-        "Seamless user authentication"
-      ],
-      links: {
-        live: "#",
-        repo: "#"
-      }
-    },
-    {
-      id: "exam-tracker",
-      title: "Competitive Exam Tracker",
-      shortPitch: "Comprehensive class tracker for competitive exams",
-      problemSolved: "Helps students organize and track their progress across various subjects like Reasoning, History, GK, and Science.",
-      techStack: ["React", "Next.js", "Tailwind CSS"],
+      id: "shopper",
+      title: "Shopper (E-Commerce Web Application)",
+      shortPitch: "Responsive e-commerce application using React.js",
+      problemSolved: "Designed reusable UI components and optimized frontend interactions for a smooth user experience across devices. Integrated frontend components with API-driven workflows for dynamic product rendering and real-time cart updates.",
+      techStack: ["React.js", "API Integrations", "Responsive UI"],
       role: "Frontend Developer",
       challenges: [
-        "Creating an intuitive progress tracking dashboard",
-        "Managing complex state for various subjects"
+        "Implementing intuitive product browsing, filtering, and shopping cart workflows",
+        "Improving usability and responsiveness through clean layouts and performance optimization techniques"
       ],
       links: {
         live: "#",
-        repo: "#"
+        repo: "#",
+        demo: "#"
+      }
+    },
+    {
+      id: "api-tester",
+      title: "API Tester Tool",
+      shortPitch: "API testing application inspired by Postman",
+      problemSolved: "Implemented support for HTTP methods, request headers, and JSON response handling to test backend APIs effectively.",
+      techStack: ["React.js", "REST APIs", "HTTP Protocols", "JSON"],
+      role: "Full Stack Developer",
+      challenges: [
+        "Handling dynamic HTTP methods and custom request headers",
+        "Improving understanding of backend APIs, HTTP protocols, and API debugging workflows"
+      ],
+      links: {
+        live: "#",
+        repo: "#",
+        demo: "#"
+      }
+    },
+    {
+      id: "speech-to-text",
+      title: "Smart Speech-to-Text Converter",
+      shortPitch: "Full-stack application for real-time audio transcription",
+      problemSolved: "Built backend API endpoints for audio uploads, transcript processing, and history management. Integrated Deepgram API services using HTTP requests and JSON-based communication.",
+      techStack: ["Flask", "React.js", "REST APIs", "Deepgram API", "JSON"],
+      role: "Full Stack Developer",
+      challenges: [
+        "Handling real-time audio transcription",
+        "Implementing validation, error handling, and optimized backend workflows for improved reliability"
+      ],
+      links: {
+        live: "#",
+        repo: "#",
+        demo: "#"
       }
     }
   ],
   experience: [
     {
-      id: "edu-cs",
-      title: "B.S. in Computer Science",
-      company: "University Name", // Replace with actual university
-      period: "Graduation Year", // Replace with actual year
-      description: "Focus on software engineering, algorithms, and full-stack development."
+      id: "labmentix",
+      title: "Python Development Intern",
+      company: "Labmentix Pvt. Ltd.",
+      period: "Oct 2025 – Apr 2026",
+      description: "Developed and tested Python scripts for backend automation and data processing tasks. Worked on debugging, optimizing application logic, and improving code efficiency. Assisted in building scalable and maintainable backend solutions."
+    },
+    {
+      id: "edu",
+      title: "B.Tech in Computer Science & Engineering",
+      company: "KIPM College of Engineering and Technology",
+      period: "August 2020 - July 2024",
+      description: "CGPA: 7.41/10"
+    },
+    {
+      id: "cert1",
+      title: "Full Stack Development with Python & Manual Testing",
+      company: "Besant Technologies",
+      period: "2025",
+      description: "Certification"
+    },
+    {
+      id: "cert2",
+      title: "Web Development with React.js",
+      company: "Besant Technologies",
+      period: "2025",
+      description: "Certification"
     }
   ],
   contact: {
-    email: "anurag.singh@example.com", // Replace with your email
+    email: "anuragsingh78626@gmail.com",
     social: {
-      github: "https://github.com/anuragsingh", // Replace with your github
-      linkedin: "https://linkedin.com/in/anuragsingh", // Replace with your linkedin
-      twitter: "https://twitter.com/anuragsingh" // Replace with your twitter
+      github: "https://github.com/Anurag268",
+      linkedin: "https://www.linkedin.com/in/anurag-singh-470134204/",
+      twitter: ""
     }
   }
 };

@@ -28,9 +28,9 @@ export default function About({ portfolio }: { portfolio: any }) {
             
             <div className="grid grid-cols-1 gap-6">
               {[
-                { icon: Smartphone, title: "Mobile Development", desc: "Crafting fluid, native-like experiences." },
-                { icon: Server, title: "Backend Systems", desc: "Designing scalable APIs and databases." },
-                { icon: Code2, title: "Web Interfaces", desc: "Building responsive, modern web apps." }
+                { icon: Code2, title: "Frontend Development", desc: "Building responsive web apps with React.js." },
+                { icon: Server, title: "Backend Systems", desc: "Designing robust APIs with Python & Django." },
+                { icon: Smartphone, title: "Full-Stack Integration", desc: "Connecting scalable backends with intuitive UIs." }
               ].map((item, index) => (
                 <motion.div
                   key={index}

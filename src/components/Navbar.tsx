@@ -61,7 +61,7 @@ export default function Navbar({ portfolio }: { portfolio: any }) {
               {link.name}
             </Link>
           ))}
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-full bg-white text-black font-medium hover:bg-zinc-200 transition-colors">
+          <a href="https://drive.google.com/file/d/1c73ncKqi6Rnq7CkgBGD24Op7Be0mbLJx/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-full bg-white text-black font-medium hover:bg-zinc-200 transition-colors">
             Resume
           </a>
         </nav>
@@ -84,7 +84,7 @@ export default function Navbar({ portfolio }: { portfolio: any }) {
                 {link.name}
               </Link>
             ))}
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-full bg-white text-black font-medium hover:bg-zinc-200 transition-colors w-11/12 text-center mt-4" onClick={() => setMobileMenuOpen(false)}>
+            <a href="https://drive.google.com/file/d/1c73ncKqi6Rnq7CkgBGD24Op7Be0mbLJx/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-full bg-white text-black font-medium hover:bg-zinc-200 transition-colors w-11/12 text-center mt-4" onClick={() => setMobileMenuOpen(false)}>
               Resume
             </a>
           </motion.div>
